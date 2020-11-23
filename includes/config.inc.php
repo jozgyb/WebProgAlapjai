@@ -20,7 +20,8 @@ $pages = array(
     'kepgaleria' => array('file' => 'gallery', 'text' => 'Képgaléria'),
     'kapcsolat' => array('file' => 'contact', 'text' => 'Kapcsolat'),
     'uzenetek' => array('file' => 'messages', 'text' => 'Üzenetek'),
-    'belepes' => array('file' => 'login', 'text' => 'Belépés')
+    'belepes' => array('file' => 'login', 'text' => 'Belépés'),
+    'regisztracio' => array('file' => 'signup', 'text' => 'Regisztráció')
 );
 
 $hiba_page = array('file' => '404', 'text' => 'A keresett oldal nem található!');

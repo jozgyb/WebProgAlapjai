@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Bejelentkezés</h2>
 <p>Please fill in your credentials to login.</p>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+<form method="post">
     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
         <label>Felhasználónév</label>
         <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">

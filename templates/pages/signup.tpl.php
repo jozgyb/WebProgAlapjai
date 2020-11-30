@@ -8,6 +8,8 @@ $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
+$alreadyRegistered = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate username
@@ -79,9 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Redirect to login page
-                header("location: login.php");
+                $alreadyRegistered = true;
             } else {
-                echo "Something went wrong. Please try again later.";
+                echo "Hiba történt. Kérem próbálja újra később!.";
             }
 
             // Close statement
@@ -93,28 +95,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mysqli->close();
 }
 ?>
-
-<h2>Sign Up</h2>
-<p>Please fill this form to create an account.</p>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-        <label>Felhasználónév</label>
-        <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-        <span class="help-block"><?php echo $username_err; ?></span>
-    </div>
-    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-        <label>Jelszó</label>
-        <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-        <span class="help-block"><?php echo $password_err; ?></span>
-    </div>
-    <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-        <label>Confirm Jelszó</label>
-        <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-        <span class="help-block"><?php echo $confirm_password_err; ?></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Submit">
-        <input type="reset" class="btn btn-default" value="Reset">
-    </div>
-    <p>Már van felhasználód? <a href="/belepes">Bejelentkezés</a>.</p>
-</form>
+<?php if ($alreadyRegistered == false) { ?>
+    <h2>Regisztráció</h2>
+    <p>Kérem töltse ki az alábbi adatokat a felhasználói fiók létrehozásához.</p>
+    <form method="post">
+        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <label>Felhasználónév</label>
+            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+            <span class="help-block"><?php echo $username_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <label>Jelszó</label>
+            <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+            <span class="help-block"><?php echo $password_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+            <label>Jelszó megerősítése</label>
+            <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+            <span class="help-block"><?php echo $confirm_password_err; ?></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Regisztráció">
+            <input type="reset" class="btn btn-default" value="Reset">
+        </div>
+        <p>Már van felhasználód? <a href="/belepes">Bejelentkezés</a>.</p>
+    </form>
+<?php } else { ?>
+    <p>Sikeres regisztráció. <a href="/belepes">Bejelentkezés</a>.</p>
+<?php } ?>

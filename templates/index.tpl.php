@@ -10,7 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="includes/simple-lightbox.min.js"></script>
+    <script src="includes/simple-lightbox.legacy.min.js"></script>
+    <script src="includes/simple-lightbox.jquery.min.js"></script>
     <link href="style.css" rel="stylesheet">
+    <link href="includes/simple-lightbox.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -23,58 +27,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <?php foreach ($pages as $url => $page) { ?>
-                        <li<?= (($page == $requestedPage) ? ' class="nav-item active"' : '') ?>>
-                            <a class="nav-link" href="<?= ($url == '/') ? '.' : $url ?>">
-                                <?= $page['text'] ?></a>
-                            </li>
+                    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
+                            <?php adjustMenuOnLogin() ?>
+                            <p><?php print $defaultPages;?></p>
                         <?php } ?>
+                        <?php foreach ($defaultPages as $url => $page) { ?>
+                            <li<?= (($page == $requestedPage) ? ' class="nav-item active"' : '') ?>>
+                                <a class="nav-link" href="<?= ($url == '/') ? '.' : $url ?>">
+                                    <?= $page['text'] ?></a>
+                                </li>
+                            <?php } ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://csodacsoport.hu/"> Eredeti oldal</a>
+                            </li>
                 </ul>
             </div>
         </div>
-
     </nav>
 
     <div class="container-fluid" id="content-wrapper">
         <?php include("./templates/pages/{$requestedPage['file']}.tpl.php"); ?>
     </div>
-
-    <!--- Image Slider -->
-
-
-    <!--- Jumbotron -->
-
-
-    <!--- Welcome Section -->
-
-
-    <!--- Three Column Section -->
-
-
-    <!--- Two Column Section -->
-
-
-    <!--- Fixed background -->
-
-
-    <!--- Emoji Section -->
-
-
-    <!--- Meet the team -->
-
-
-    <!--- Cards -->
-
-
-    <!--- Two Column Section -->
-
-
-    <!--- Connect -->
-
-
-    <!--- Footer -->
-
-
 
 
 </body>

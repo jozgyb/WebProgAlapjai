@@ -14,7 +14,7 @@ $footer = array(
     'company' => 'CsodaCsoport Alapítvány'
 );
 
-$pages = array(
+$defaultPages = array(
     '/' => array('file' => 'main', 'text' => 'Főoldal'),
     'bemutatkozas' => array('file' => 'bemutatkozas', 'text' => 'Bemutatkozás'),
     'kepgaleria' => array('file' => 'gallery', 'text' => 'Képgaléria'),
@@ -24,4 +24,19 @@ $pages = array(
     'regisztracio' => array('file' => 'signup', 'text' => 'Regisztráció')
 );
 
+$userpages = array(
+    'kilepes' => array('file' => 'logout', 'text' => 'Kilépés')
+);
+
 $hiba_page = array('file' => '404', 'text' => 'A keresett oldal nem található!');
+
+$debug = true;
+
+function adjustMenuOnLogin()
+{
+    unset($defaultPages['belepes']);
+    unset($defaultPages['regisztracio']);
+    $defaultPages['kilepes'] = array('file' => 'logout', 'text' => 'Kilépés');
+}
+
+?>

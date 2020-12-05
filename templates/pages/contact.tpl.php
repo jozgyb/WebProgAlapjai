@@ -75,28 +75,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Kapcsolatfelvétel</h2>
 <p>Az alábbi űrlapon üzenetet küldhet nekünk.</p>
-<form method="post">
+<form id="messageForm" method="post">
     <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
-        <label>Feladó neve</label>
-        <input type="text" name="sender" class="form-control" value="<?php echo $sender; ?>">
+        <label for="sender">Feladó neve</label>
+        <input id="sender" type="text" name="sender" class="form-control" value="<?php echo $sender; ?>" required maxlength="60">
         <span class="help-block"><?php echo $sender_err; ?></span>
     </div>
     <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
-        <label>Feladó e-mail címe</label>
-        <input type="text" name="sendermail" class="form-control" value="<?php echo $sendermail; ?>">
+        <label for="sendermail">Feladó e-mail címe</label>
+        <input id="sendermail" type="text" name="sendermail" class="form-control" value="<?php echo $sendermail; ?>" required>
         <span class="help-block"><?php echo $sendermail_err; ?></span>
     </div>
     <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
-        <label>Tárgy</label>
-        <input type="text" name="subject" class="form-control" value="<?php echo $subject; ?>">
+        <label for="subject">Tárgy</label>
+        <input id="subject" type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" required>
         <span class="help-block"><?php echo $subject_err; ?></span>
     </div>
     <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
-        <label>Üzenet</label>
-        <textarea class="form-control" name="message" class="form-control"></textarea>
+        <label for="message">Üzenet</label>
+        <textarea id="message" class="form-control" name="message" class="form-control" required></textarea>
         <span class="help-block"><?php echo $message_err; ?></span>
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Küldés">
     </div>
 </form>
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<script>
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#messageForm" ).validate({
+  rules: {
+    sendermail: {
+      required: true,
+      email: true
+    }
+  }
+});
+</script>

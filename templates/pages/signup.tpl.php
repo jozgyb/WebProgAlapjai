@@ -5,7 +5,7 @@ require_once __ROOT__ . "/includes/db_config.inc.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username_err = $password_err = $lastname_err = $firstname_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
 $alreadyRegistered = false;

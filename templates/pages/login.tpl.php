@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: welcome.php");
+    header("location: /");
     exit;
 }
 
@@ -21,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if username is empty
     if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter username.";
+        $username_err = "Kérem adja meg felhasználónevét.";
     } else {
         $username = trim($_POST["username"]);
     }
 
     // Check if password is empty
     if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter your password.";
+        $password_err = "Kérem adja meg jelszavát.";
     } else {
         $password = trim($_POST["password"]);
     }
@@ -65,18 +65,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;
 
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: /");
                         } else {
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = "A megadott jelszó helytelen.";
                         }
                     }
                 } else {
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $username_err = "Nem található fiók a megadott felhasználónévvel.";
                 }
             } else {
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Hoppá! Hiba történt. Kérem próbálja újra később.";
             }
 
             // Close statement
@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <h2>Bejelentkezés</h2>
-<p>Please fill in your credentials to login.</p>
+<p>Kérem adja meg felhasználónevét és jelszavát a belépéshez.</p>
 <form method="post">
     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
         <label>Felhasználónév</label>

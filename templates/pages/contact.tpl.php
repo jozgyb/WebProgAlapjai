@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Sender name
     if (empty(trim($_POST["sender"]))) {
         $sender_err = "Kérem adja meg a nevét.";
+    } elseif(!preg_match("/^[a-zA-Z-' ]*$/",$sender)) {
+        $sender_err = "Ez a mező csak betűket és szöközöket tartalmazhat!";
     } else {
         $sender = trim($_POST["sender"]);
     }
@@ -20,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Sender e-mail
     if (empty(trim($_POST["sendermail"]))) {
         $sendermail_err = "Kérem adja meg e-mail címét.";
+    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){ 
+        $sendermail_err = "Helytelen e-mail formátum.";
     } else {
         $sendermail = trim($_POST["sendermail"]);
     }

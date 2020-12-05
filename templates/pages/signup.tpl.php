@@ -4,7 +4,7 @@ define('__ROOT__', dirname(dirname(dirname(__FILE__))));
 require_once __ROOT__ . "/includes/db_config.inc.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
+$username = $password = $lastname = $firstname = $confirm_password = "";
 $username_err = $password_err = $lastname_err = $firstname_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty(trim($_POST["firstname"]))) {
         $firstname_err = "Kérem adja meg keresztnevét.";
     } else {
-        $password = trim($_POST["firstname"]);
+        $firstname = trim($_POST["firstname"]);
     }
 
     // Validate password

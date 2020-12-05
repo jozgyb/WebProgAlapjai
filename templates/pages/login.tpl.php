@@ -1,6 +1,6 @@
 <?php
 // Initialize the session
-session_start();
+// session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
@@ -56,13 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->bind_result($id, $username, $hashed_password);
                     if ($stmt->fetch()) {
                         if (password_verify($password, $hashed_password)) {
-                            // Jelszó is correct, so start a new session
+                            // Password is correct, so start a new session
                             session_start();
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
+                            adjustMenuOnLogin($defaultPages);
 
                             // Redirect user to welcome page
                             header("location: /");

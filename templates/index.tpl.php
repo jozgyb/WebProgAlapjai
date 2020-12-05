@@ -27,19 +27,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
-                            <?php adjustMenuOnLogin() ?>
-                            <p><?php print $defaultPages;?></p>
-                        <?php } ?>
-                        <?php foreach ($defaultPages as $url => $page) { ?>
-                            <li<?= (($page == $requestedPage) ? ' class="nav-item active"' : '') ?>>
-                                <a class="nav-link" href="<?= ($url == '/') ? '.' : $url ?>">
-                                    <?= $page['text'] ?></a>
-                                </li>
-                            <?php } ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://csodacsoport.hu/"> Eredeti oldal</a>
+                    <?php $currentPages = adjustMenuOnLogin($defaultPages); ?>
+                    <?php foreach ($currentPages as $url => $page) { ?>
+                        <li<?= (($page == $requestedPage) ? ' class="nav-item active"' : '') ?>>
+                            <a class="nav-link" href="<?= ($url == '/') ? '.' : $url ?>">
+                                <?= $page['text'] ?></a>
                             </li>
+                        <?php } ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://csodacsoport.hu/"> Eredeti oldal</a>
+                        </li>
                 </ul>
             </div>
         </div>

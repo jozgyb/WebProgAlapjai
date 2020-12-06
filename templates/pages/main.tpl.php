@@ -1,14 +1,6 @@
 <figure>
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <img src="img/welcome.png" class="img-fluid" alt="Responsive image">
-            </div>
-        </div>
-    </div> -->
     <div class="fixed-wrap">
         <div id="fixed">
-            
         </div>
     </div>
 </figure>

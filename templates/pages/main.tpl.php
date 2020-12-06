@@ -1,0 +1,29 @@
+<figure>
+    <div class="fixed-wrap">
+        <div id="fixed">
+
+        </div>
+    </div>
+</figure>
+<div class="containter fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h2 class="display-5">
+                Üdvözlünk Magyarország legnagyobb jótékonysági aukciós közösségének, a CsodaCsoport – Jótékonysági Licit Facebook csoport Alapítványának hivatalos honlapján!
+            </h2>
+        </div>
+        <hr>
+        <div class="col-12">
+            <p class="lead">
+                Ha te is a cselekvő emberek közé tartozol, akkor köztünk a helyed!
+            </p>
+        </div>
+        <div class="col-12">
+            <a href="https://www.facebook.com/groups/643332389525688/">
+                <button type="button" class="btn btn-outline-secondary btn-lg">
+                    Csatlakozom
+                </button>
+            </a>
+        </div>
+    </div>
+</div>

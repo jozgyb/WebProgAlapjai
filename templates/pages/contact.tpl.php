@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Sender name
     if (empty(trim($_POST["sender"]))) {
         $sender_err = "Kérem adja meg a nevét.";
-    } elseif(!preg_match("/^[a-zA-Z-' ]*$/",$_POST["sender"])) {
+    } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["sender"])) {
         $sender_err = "Ez a mező csak betűket és szöközöket tartalmazhat!";
     } else {
         $sender = trim($_POST["sender"]);
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Sender e-mail
     if (empty(trim($_POST["sendermail"]))) {
         $sendermail_err = "Kérem adja meg e-mail címét.";
-    } elseif(!filter_var($_POST["sendermail"], FILTER_VALIDATE_EMAIL)){ 
+    } elseif (!filter_var($_POST["sendermail"], FILTER_VALIDATE_EMAIL)) {
         $sendermail_err = "Helytelen e-mail formátum.";
     } else {
         $sendermail = trim($_POST["sendermail"]);
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate subject
     if (empty(trim($_POST["subject"]))) {
         $subject_err = "Kérem adja meg az üzenet tárgyát.";
-    } elseif (strlen(trim($_POST["subject"])) > 255){
+    } elseif (strlen(trim($_POST["subject"])) > 255) {
         $subject_err = "Túl hosszú tárgy, kérem 255 karakternél rövidebben fogalmazza meg.";
     } else {
         $subject = trim($_POST["subject"]);
@@ -57,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
-                //TODO: visszajelezni hogy sikeres volt az üzenetküldés, illetve átirányítani az üzenetet tartalmazó oldalra.
                 $messageSent = true;
             } else {
                 echo "Hiba történt. Kérem próbálja újra később!.";
@@ -73,48 +72,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2>Kapcsolatfelvétel</h2>
-<p>Az alábbi űrlapon üzenetet küldhet nekünk.</p>
-<form id="messageForm" method="post">
-    <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
-        <label for="sender">Feladó neve</label>
-        <input id="sender" type="text" name="sender" class="form-control" value="<?php echo $sender; ?>" required maxlength="60">
-        <span class="help-block"><?php echo $sender_err; ?></span>
-    </div>
-    <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
-        <label for="sendermail">Feladó e-mail címe</label>
-        <input id="sendermail" type="text" name="sendermail" class="form-control" value="<?php echo $sendermail; ?>" required>
-        <span class="help-block"><?php echo $sendermail_err; ?></span>
-    </div>
-    <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
-        <label for="subject">Tárgy</label>
-        <input id="subject" type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" required>
-        <span class="help-block"><?php echo $subject_err; ?></span>
-    </div>
-    <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
-        <label for="message">Üzenet</label>
-        <textarea id="message" class="form-control" name="message" class="form-control" required></textarea>
-        <span class="help-block"><?php echo $message_err; ?></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Küldés">
-    </div>
-</form>
+<?php if ($messageSent == false) { ?>
+    <h2>Kapcsolatfelvétel</h2>
+    <p>Az alábbi űrlapon üzenetet küldhet nekünk.</p>
+    <form id="messageForm" method="post">
+        <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
+            <label for="sender">Feladó neve</label>
+            <input id="sender" type="text" name="sender" class="form-control" value="<?php echo $sender; ?>" required maxlength="75">
+            <span class="help-block"><?php echo $sender_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
+            <label for="sendermail">Feladó e-mail címe</label>
+            <input id="sendermail" type="text" name="sendermail" class="form-control" value="<?php echo $sendermail; ?>" required maxlength="75">
+            <span class="help-block"><?php echo $sendermail_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
+            <label for="subject">Tárgy</label>
+            <input id="subject" type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" required maxlength="255">
+            <span class="help-block"><?php echo $subject_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
+            <label for="message">Üzenet</label>
+            <textarea id="message" name="message" class="form-control" required><?php echo $message; ?></textarea>
+            <span class="help-block"><?php echo $message_err; ?></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Küldés">
+        </div>
+    </form>
 
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
-<script>
-jQuery.validator.setDefaults({
-  debug: true,
-  success: "valid"
-});
-$( "#messageForm" ).validate({
-  rules: {
-    sendermail: {
-      required: true,
-      email: true
-    }
-  }
-});
-</script>
+    <!-- <script>
+        jQuery.validator.setDefaults({
+            debug: true,
+            success: "valid"
+        });
+        $("#messageForm").validate({
+            rules: {
+                sendermail: {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+    </script> -->
+<?php } else { ?>
+    <h2>Sikeres üzenetküldés</h2>
+    <p>Az alábbi üzenetet sikeresen elküldte nekünk: </p>
+    <form id="printedMessage" method="post">
+        <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
+            <label for="sender">Feladó neve</label>
+            <input id="sender" type="text" name="sender" readonly class="form-control" value="<?php echo $sender; ?>">
+            <span class="help-block"><?php echo $sender_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
+            <label for="sendermail">Feladó e-mail címe</label>
+            <input id="sendermail" type="text" name="sendermail" readonly class="form-control" value="<?php echo $sendermail; ?>">
+            <span class="help-block"><?php echo $sendermail_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
+            <label for="subject">Tárgy</label>
+            <input id="subject" type="text" name="subject" readonly class="form-control" value="<?php echo $subject; ?>">
+            <span class="help-block"><?php echo $subject_err; ?></span>
+        </div>
+        <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
+            <label for="message">Üzenet</label>
+            <textarea id="message" name="message" readonly class="form-control"><?php echo $message; ?></textarea>
+            <span class="help-block"><?php echo $message_err; ?></span>
+        </div>
+    </form>
+<?php } ?>

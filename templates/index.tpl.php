@@ -41,7 +41,17 @@
             </div>
         </div>
     </nav>
-
+    <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) { ?>
+        <div class="container-fluid">
+            <div id="loginstatus" class="row">
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+                    <p>
+                        Bejelentkezett: <?php echo $_SESSION["lastname"] . " " . $_SESSION["firstname"] . " (" . $_SESSION["username"] . ")"; ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
     <div class="container-fluid" id="content-wrapper">
         <?php include("./templates/pages/{$requestedPage['file']}.tpl.php"); ?>
     </div>

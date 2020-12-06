@@ -7,34 +7,37 @@ $requestMessagesByChronologicalOrder = "SELECT sender, sendermail, subject, mess
 $queryResult = $mysqli->query($requestMessagesByChronologicalOrder);
 
 ?>
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Feladó</th>
-                <th scope="col">E-mail címe</th>
-                <th scope="col">Tárgy</th>
-                <th scope="col">Üzenet</th>
-                <th scope="col">Időbélyeg</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($queryResult->num_rows > 0) {
-                while ($row = $queryResult->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td> " . $row["sender"] . " </td> ";
-                    echo "<td> " . $row["sendermail"] . " </td> ";
-                    echo "<td> " . $row["subject"] . " </td> ";
-                    echo "<td> " . $row["message"] . " </td> ";
-                    echo "<td> " . $row["created_at"] . " </td> ";
-                    echo "</tr>";
+<div class="col-12">
+    <div class="table-responsive-md">
+        <table class="table table-hover">
+        <caption>Összes üzenet az adatbázisban időszerint csökkenő sorrendben.</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Feladó</th>
+                    <th scope="col">E-mail címe</th>
+                    <th scope="col">Tárgy</th>
+                    <th scope="col">Üzenet</th>
+                    <th scope="col">Időbélyeg</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($queryResult->num_rows > 0) {
+                    while ($row = $queryResult->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td> " . $row["sender"] . " </td> ";
+                        echo "<td> " . $row["sendermail"] . " </td> ";
+                        echo "<td> " . $row["subject"] . " </td> ";
+                        echo "<td> " . $row["message"] . " </td> ";
+                        echo "<td> " . $row["created_at"] . " </td> ";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "Jelenleg egy üzenet sem található az adatbázisban.";
                 }
-            } else {
-                echo "Jelenleg egy üzenet sem található az adatbázisban.";
-            }
 
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </div>

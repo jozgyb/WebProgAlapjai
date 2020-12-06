@@ -19,7 +19,7 @@ $footer = array(
 
 $defaultPages = array(
     '/' => array('file' => 'main', 'text' => 'Főoldal'),
-    'bemutatkozas' => array('file' => 'bemutatkozas', 'text' => 'Bemutatkozás'),
+    'rolunk' => array('file' => 'aboutus', 'text' => 'Rólunk'),
     'kepgaleria' => array('file' => 'gallery', 'text' => 'Képgaléria'),
     'kapcsolat' => array('file' => 'contact', 'text' => 'Kapcsolat'),
     'uzenetek' => array('file' => 'messages', 'text' => 'Üzenetek'),

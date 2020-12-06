@@ -112,40 +112,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <?php if ($alreadyRegistered == false) { ?>
-    <h2>Regisztráció</h2>
-    <p>Kérem töltse ki az alábbi adatokat a felhasználói fiók létrehozásához.</p>
-    <form method="post">
-        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-            <label>Felhasználónév</label>
-            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-            <span class="help-block"><?php echo $username_err; ?></span>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <h2>Regisztráció</h2>
+                <p>Kérem töltse ki az alábbi adatokat a felhasználói fiók létrehozásához.</p>
+                <form method="post">
+                    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                        <label>Felhasználónév</label>
+                        <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                        <span class="help-block"><?php echo $username_err; ?></span>
+                    </div>
+                    <div class="form-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
+                        <label>Vezetéknév</label>
+                        <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>">
+                        <span class="help-block"><?php echo $lastname_err; ?></span>
+                    </div>
+                    <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
+                        <label>Keresztnév</label>
+                        <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
+                        <span class="help-block"><?php echo $firstname_err; ?></span>
+                    </div>
+                    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                        <label>Jelszó</label>
+                        <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                        <span class="help-block"><?php echo $password_err; ?></span>
+                    </div>
+                    <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+                        <label>Jelszó megerősítése</label>
+                        <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                        <span class="help-block"><?php echo $confirm_password_err; ?></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Regisztráció">
+                        <input type="reset" class="btn btn-default" value="Reset">
+                    </div>
+                    <p>Már van felhasználód? <a href="/belepes">Bejelentkezés</a>.</p>
+                </form>
+            </div>
         </div>
-        <div class="form-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
-            <label>Vezetéknév</label>
-            <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>">
-            <span class="help-block"><?php echo $lastname_err; ?></span>
-        </div>
-        <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
-            <label>Keresztnév</label>
-            <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
-            <span class="help-block"><?php echo $firstname_err; ?></span>
-        </div>
-        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-            <label>Jelszó</label>
-            <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-            <span class="help-block"><?php echo $password_err; ?></span>
-        </div>
-        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-            <label>Jelszó megerősítése</label>
-            <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-            <span class="help-block"><?php echo $confirm_password_err; ?></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Regisztráció">
-            <input type="reset" class="btn btn-default" value="Reset">
-        </div>
-        <p>Már van felhasználód? <a href="/belepes">Bejelentkezés</a>.</p>
-    </form>
-<?php } else { ?>
-    <p>Sikeres regisztráció. <a href="/belepes">Bejelentkezés</a>.</p>
-<?php } ?>
+    </div>
+    <?php } else { ?>
+        <p>Sikeres regisztráció. <a href="/belepes">Bejelentkezés</a>.</p>
+    <?php } ?>

@@ -92,21 +92,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<h2>Bejelentkezés</h2>
-<p>Kérem adja meg felhasználónevét és jelszavát a belépéshez.</p>
-<form method="post">
-    <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-        <label>Felhasználónév</label>
-        <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-        <span class="help-block"><?php echo $username_err; ?></span>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <h2>Bejelentkezés</h2>
+            <p>Kérem adja meg felhasználónevét és jelszavát a belépéshez.</p>
+            <form method="post">
+                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                    <label>Felhasználónév</label>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                    <span class="help-block"><?php echo $username_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                    <label>Jelszó</label>
+                    <input type="password" name="password" class="form-control">
+                    <span class="help-block"><?php echo $password_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Bejelentkezés">
+                </div>
+                <p>Nincs még felhasználód? <a href="/regisztracio">Regisztráció</a>.</p>
+            </form>
+        </div>
     </div>
-    <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-        <label>Jelszó</label>
-        <input type="password" name="password" class="form-control">
-        <span class="help-block"><?php echo $password_err; ?></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" value="Bejelentkezés">
-    </div>
-    <p>Nincs még felhasználód? <a href="/regisztracio">Regisztráció</a>.</p>
-</form>
+</div>

@@ -1,2 +1,1 @@
-# WebProgAlapjai
-Beadandó feladat Web-programozás alapjai kurzushoz
+# Web programming I

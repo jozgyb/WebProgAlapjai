@@ -21,14 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if username is empty
     if (empty(trim($_POST["username"]))) {
-        $username_err = "Kérem adja meg felhasználónevét.";
+        $username_err = "Please enter the username.";
     } else {
         $username = trim($_POST["username"]);
     }
 
     // Check if password is empty
     if (empty(trim($_POST["password"]))) {
-        $password_err = "Kérem adja meg jelszavát.";
+        $password_err = "Please enter your password.";
     } else {
         $password = trim($_POST["password"]);
     }
@@ -71,15 +71,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             header("location: /");
                         } else {
                             // Display an error message if password is not valid
-                            $password_err = "A megadott jelszó helytelen.";
+                            $password_err = "Wrong password.";
                         }
                     }
                 } else {
                     // Display an error message if username doesn't exist
-                    $username_err = "Nem található fiók a megadott felhasználónévvel.";
+                    $username_err = "The username doesn't exist.";
                 }
             } else {
-                echo "Hoppá! Hiba történt. Kérem próbálja újra később.";
+                echo "Whoops! Something went wrong. Try again later.";
             }
 
             // Close statement
@@ -95,23 +95,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-auto">
-            <h2>Bejelentkezés</h2>
-            <p>Kérem adja meg felhasználónevét és jelszavát a belépéshez.</p>
+            <h2>Login</h2>
+            <p>Enter your username and password below to login.</p>
             <form method="post">
                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                    <label>Felhasználónév</label>
+                    <label>Username</label>
                     <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                     <span class="help-block"><?php echo $username_err; ?></span>
                 </div>
                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                    <label>Jelszó</label>
+                    <label>Password</label>
                     <input type="password" name="password" class="form-control">
                     <span class="help-block"><?php echo $password_err; ?></span>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Bejelentkezés">
                 </div>
-                <p>Nincs még felhasználód? <a href="/regisztracio">Regisztráció</a>.</p>
+                <p>Don't have a user yet? <a href="/regisztracio">Sign up</a>.</p>
             </form>
         </div>
     </div>

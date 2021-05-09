@@ -2,17 +2,19 @@
     <div class="row padding">
         <div class="col-md-12 col-lg-6">
             <h2>CsodaCsoport</h2>
-            <p>A CsodaCsoport – Jótékonysági licit egy több mint 110 ezer főt számláló Facebook csoport.</p>
-            <p>Mottónk: “Együtt, egy célért, a beteg gyermekekért!”</p>
-            <p>Közösségi aukciók keretében támogatást gyűjtünk beteg gyermekek költséges, olykor csak külföldön elérhető gyógykezelésére, valamint más, országos szintű egészségügyi szolgáltatások minőségének javítására.</p>
-            <p>Tagjaink olyan civil emberek, akik szívesen tesznek maguk is azért, hogy embertársaik életminősége javuljon. Hisszük, hogy mindannyian tehetünk valamit egymásért.</p>
+            <p>The CsodaCsoport – charity bidding - is a Facebook group with more than 110k members.</p>
+            <p>Motto: “Together, for one goal, for children with illness!”</p>
+            <p>During our community auctions we are gathering donations for ill children's very expensive - sometimes only avaiable from abroad - medical services, and for improvement of several contry-wide medical services.</p>
+            <p>Our members are that kind of everyday people who are willing to put effort into improve quality of life in society. We believe that everyone can help everybody.</p>
         </div>
         <div class="col-md-12 col-lg-6">
-            <h2>Alapítvány</h2>
-            <p>Alapítványunk elindítását az az aktív, határokat átívelő és megrendíthetetlen összefogás ösztönözte, amelyet Facebook csoportunk tagjai képviselnek. A CsodaCsoport Alapítvány olyan ritka civil szervezet, amely egy közösségi médiában létrejött összefogás gyermekeként született.</p>
-            <p>Küldetésünk a beteg, sérült, fogyatékkal élő gyermekek gyúgyulásának és felépülésének segítése vagy egészségügyi állapotuk további romlásának megakadályozása a szükséges kezelések költségeinek támogatása által.</p>
-            <p>Célunk, hogy minél szélesebb körben ismertté tegyük tevékenységünket és széles társadalmi rétegeket vonjunk be a társadalmi felelősségvállalásba és a közösségi adakozásba.</p>
-            <p>A csoport maximálisan él a közösségi média által nyújtott lehetőségekkel, hogy az adakozást egyre többek mindennapi gyakorlatává tegye, és úttörő szerepet játszik a jótékonyság társadalmi szintre emelésében.</p>
+            <h2>Foundation</h2>
+            <p>The start of our foundation was encouraged by a cross-border and unshakable co-operation, which was represented by our Facebook group members.
+            The CsodaCsoport Foundation is one of the few civil organisations, which are based on a co-operation from a social media platform.</p>
+            <p>Our mission is to help with the healing of children suffering from illness or other health diseases, and to prevent any further deterioration of their prognosis, via providing financial support for the necessary medical treatments.</p>
+            <p>Our goal is to make are activities known in a broader circle, and to involve a wide variaty of people into social responsibility and community donations.</p>
+            <p>The group tries to take advantage of the possibilities provided the social media paltforms, in order to make donation an everyday practice. 
+            On the other hand it plays as a role of pioneer to elevate donation to the level of society.</p>
         </div>
     </div>
 </div>

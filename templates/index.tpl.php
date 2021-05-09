@@ -35,7 +35,7 @@
                             </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="https://csodacsoport.hu/"> Eredeti oldal</a>
+                            <a class="nav-link" href="https://csodacsoport.hu/"> Original site</a>
                         </li>
                 </ul>
             </div>
@@ -46,7 +46,7 @@
             <div id="loginstatus" class="row">
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
                     <p>
-                        Bejelentkezett: <?php echo $_SESSION["lastname"] . " " . $_SESSION["firstname"] . " (" . $_SESSION["username"] . ")"; ?>
+                        Logged in as: <?php echo $_SESSION["lastname"] . " " . $_SESSION["firstname"] . " (" . $_SESSION["username"] . ")"; ?>
                     </p>
                 </div>
             </div>

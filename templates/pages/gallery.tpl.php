@@ -9,23 +9,23 @@ if (isset($_POST["submit"])) {
 
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
-        echo "A fájl kép- " . $check["mime"] . ". \n";
+        echo "File is an image - " . $check["mime"] . ". \n";
         $uploadOk = 1;
     } else {
-        echo "A kiválasztott fájl nem egy kép.\n";
+        echo "Selected file isn't an image.\n";
         $uploadOk = 0;
     }
 
 
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sajnos már létezik kép ezzel a névvel.";
+        echo "Image name already exists.";
         $uploadOk = 0;
     }
 
     // Check file size
     elseif ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sajnos a fájl mérete túl nagy.";
+        echo "Size of the file is too big.";
         $uploadOk = 0;
     }
 
@@ -34,19 +34,19 @@ if (isset($_POST["submit"])) {
         $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif"
     ) {
-        echo "Csak JPG, JPEG, PNG & GIF kiterjesztésű képek feltöltése engedélyezett.";
+        echo "Only JPG, JPEG, PNG & GIF types are allowed.";
         $uploadOk = 0;
     }
 
     // Check if $uploadOk is set to 0 by an error
     else if ($uploadOk == 0) {
-        echo "Hiba történt.";
+        echo "Something went wrong.";
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "A következő fájl: " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " feltöltésre került";
+            echo "The following file: " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded";
         } else {
-            echo "Hiba a felöltés közben.";
+            echo "Something went wrong during uploading.";
         }
     }
 }
@@ -96,14 +96,14 @@ foreach ($images as $image) {
                 <form method="post" enctype="multipart/form-data">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">Válassza ki a feltölteni kívánt képet:</span>
+                            <span class="input-group-text">Choose an image to upload:</span>
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="fileToUpload" id="fileToUpload">
-                            <label class="custom-file-label" for="fileToUpload">Fájl kiválasztása</label>
+                            <label class="custom-file-label" for="fileToUpload">Select an image</label>
                         </div>
                         <div class="input-group-append">
-                            <input type="submit" class="input-group-text" value="Kép feltöltése" name="submit">
+                            <input type="submit" class="input-group-text" value="Upload" name="submit">
                         </div>
                     </div>
                 </form>

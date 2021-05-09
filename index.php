@@ -10,7 +10,7 @@ if ($page != "") {
     } else if (isset($extrak[$page]) && file_exists("./templates/pages/{$extrak[$page]['file']}.tpl.php")) {
         $requestedPage = $extrak[$page];
     } else {
-        $requestedPage = $hiba_page;
+        $requestedPage = $err_page;
         header("HTTP/1.0 404 Not Found");
     }
 } else $requestedPage = $defaultPages['/'];

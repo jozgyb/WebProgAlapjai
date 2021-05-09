@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate username
     if (empty(trim($_POST["username"]))) {
-        $username_err = "Kérem adja meg felhasználónevét.";
+        $username_err = "Please enter the username.";
     } else {
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = ?";
@@ -32,12 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->store_result();
 
                 if ($stmt->num_rows == 1) {
-                    $username_err = "Ez a felhasználónév már létezik.";
+                    $username_err = "User already exists.";
                 } else {
                     $username = trim($_POST["username"]);
                 }
             } else {
-                echo "Hoppá! Hiba történt. Kérem próbálja újra később.";
+                echo "Whoops! Something went wrong. Try again later.";
             }
 
             // Close statement
@@ -47,34 +47,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate lastname
     if (empty(trim($_POST["lastname"]))) {
-        $lastname_err = "Kérem adja meg vezetéknevét.";
+        $lastname_err = "Please enter your lastname.";
     } else {
         $lastname = trim($_POST["lastname"]);
     }
 
     // Validate firstname
     if (empty(trim($_POST["firstname"]))) {
-        $firstname_err = "Kérem adja meg keresztnevét.";
+        $firstname_err = "Please enter your firstname";
     } else {
         $firstname = trim($_POST["firstname"]);
     }
 
     // Validate password
     if (empty(trim($_POST["password"]))) {
-        $password_err = "Kérem adjon meg egy jelszót.";
+        $password_err = "Please enter a password.";
     } elseif (strlen(trim($_POST["password"])) < 6) {
-        $password_err = "A jelszónak legalább 6 karakterből kell állnia.";
+        $password_err = "Password must have at least 6 characters.";
     } else {
         $password = trim($_POST["password"]);
     }
 
     // Validate confirm password
     if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Kérem erősítse meg jelszavát.";
+        $confirm_password_err = "Please confirm your password.";
     } else {
         $confirm_password = trim($_POST["confirm_password"]);
         if (empty($password_err) && ($password != $confirm_password)) {
-            $confirm_password_err = "A jelszavak nem egyeznek.";
+            $confirm_password_err = "Password are a mismatch.";
         }
     }
 
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Redirect to login page
                 $alreadyRegistered = true;
             } else {
-                echo "Hiba történt. Kérem próbálja újra később!.";
+                echo "Something went wrong. Try again later.";
             }
 
             // Close statement
@@ -115,43 +115,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
-                <h2>Regisztráció</h2>
-                <p>Kérem töltse ki az alábbi adatokat a felhasználói fiók létrehozásához.</p>
+                <h2>Sign Up</h2>
+                <p>Please fill the form below to create a user account.</p>
                 <form method="post">
                     <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                        <label>Felhasználónév</label>
+                        <label>Username</label>
                         <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                         <span class="help-block"><?php echo $username_err; ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($lastname_err)) ? 'has-error' : ''; ?>">
-                        <label>Vezetéknév</label>
+                        <label>Lastname</label>
                         <input type="text" name="lastname" class="form-control" value="<?php echo $lastname; ?>">
                         <span class="help-block"><?php echo $lastname_err; ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
-                        <label>Keresztnév</label>
+                        <label>Firstname</label>
                         <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
                         <span class="help-block"><?php echo $firstname_err; ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                        <label>Jelszó</label>
+                        <label>Password</label>
                         <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
                         <span class="help-block"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-                        <label>Jelszó megerősítése</label>
+                        <label>Confirm Password</label>
                         <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
                         <span class="help-block"><?php echo $confirm_password_err; ?></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Regisztráció">
+                        <input type="submit" class="btn btn-primary" value="Sign Up">
                         <input type="reset" class="btn btn-default" value="Reset">
                     </div>
-                    <p>Már van felhasználód? <a href="/belepes">Bejelentkezés</a>.</p>
+                    <p>Already have an account? <a href="/belepes">Login</a>.</p>
                 </form>
             </div>
         </div>
     </div>
     <?php } else { ?>
-        <p>Sikeres regisztráció. <a href="/belepes">Bejelentkezés</a>.</p>
+        <p>Successfull. An account has been created. <a href="/belepes">Login</a>.</p>
     <?php } ?>

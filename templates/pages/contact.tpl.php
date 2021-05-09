@@ -12,34 +12,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate Sender name
     if (empty(trim($_POST["sender"]))) {
-        $sender_err = "Kérem adja meg a nevét.";
+        $sender_err = "Please enter your name.";
     } elseif (!preg_match("/^[a-zA-Z-' ]*$/", $_POST["sender"])) {
-        $sender_err = "Ez a mező csak betűket és szöközöket tartalmazhat!";
+        $sender_err = "This field shall only contain letters and whitespaces!";
     } else {
         $sender = trim($_POST["sender"]);
     }
 
     // Validate Sender e-mail
     if (empty(trim($_POST["sendermail"]))) {
-        $sendermail_err = "Kérem adja meg e-mail címét.";
+        $sendermail_err = "Please enter your e-mail.";
     } elseif (!filter_var($_POST["sendermail"], FILTER_VALIDATE_EMAIL)) {
-        $sendermail_err = "Helytelen e-mail formátum.";
+        $sendermail_err = "Invalid e-mail address.";
     } else {
         $sendermail = trim($_POST["sendermail"]);
     }
 
     // Validate subject
     if (empty(trim($_POST["subject"]))) {
-        $subject_err = "Kérem adja meg az üzenet tárgyát.";
+        $subject_err = "Please enter the subject of the message.";
     } elseif (strlen(trim($_POST["subject"])) > 255) {
-        $subject_err = "Túl hosszú tárgy, kérem 255 karakternél rövidebben fogalmazza meg.";
+        $subject_err = "Too long. Max length is 255 characters.";
     } else {
         $subject = trim($_POST["subject"]);
     }
 
     // Validate message
     if (empty(trim($_POST["message"]))) {
-        $message_err = "Kérem adjon meg egy üzenetet.";
+        $message_err = "Please enter a message.";
     } else {
         $message = trim($_POST["message"]);
     }
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 $messageSent = true;
             } else {
-                echo "Hiba történt. Kérem próbálja újra később!.";
+                echo "Whoops! Something went wrong. Try again later.";
             }
 
             // Close statement
@@ -73,31 +73,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <?php if ($messageSent == false) { ?>
-    <h2>Kapcsolatfelvétel</h2>
-    <p>Az alábbi űrlapon üzenetet küldhet nekünk.</p>
+    <h2>Contact Us</h2>
+    <p>By filling the form below you can send us a message.</p>
     <form id="messageForm" method="post">
         <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
-            <label for="sender">Feladó neve</label>
+            <label for="sender">Name</label>
             <input id="sender" type="text" name="sender" class="form-control" value="<?php echo $sender; ?>" required maxlength="75">
             <span class="help-block"><?php echo $sender_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
-            <label for="sendermail">Feladó e-mail címe</label>
+            <label for="sendermail">E-mail</label>
             <input id="sendermail" type="text" name="sendermail" class="form-control" value="<?php echo $sendermail; ?>" required maxlength="75">
             <span class="help-block"><?php echo $sendermail_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
-            <label for="subject">Tárgy</label>
+            <label for="subject">Subject</label>
             <input id="subject" type="text" name="subject" class="form-control" value="<?php echo $subject; ?>" required maxlength="255">
             <span class="help-block"><?php echo $subject_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
-            <label for="message">Üzenet</label>
+            <label for="message">Message</label>
             <textarea id="message" name="message" class="form-control" required><?php echo $message; ?></textarea>
             <span class="help-block"><?php echo $message_err; ?></span>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Küldés">
+            <input type="submit" class="btn btn-primary" value="Send">
         </div>
     </form>
 
@@ -119,26 +119,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script> -->
 <?php } else { ?>
-    <h2>Sikeres üzenetküldés</h2>
-    <p>Az alábbi üzenetet sikeresen elküldte nekünk: </p>
+    <h2>Message has been sent</h2>
+    <p>The follow message has been sent successfully: </p>
     <form id="printedMessage" method="post">
         <div class="form-group <?php echo (!empty($sender_err)) ? 'has-error' : ''; ?>">
-            <label for="sender">Feladó neve</label>
+            <label for="sender">Name</label>
             <input id="sender" type="text" name="sender" readonly class="form-control" value="<?php echo $sender; ?>">
             <span class="help-block"><?php echo $sender_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($sendermail_err)) ? 'has-error' : ''; ?>">
-            <label for="sendermail">Feladó e-mail címe</label>
+            <label for="sendermail">E-mail</label>
             <input id="sendermail" type="text" name="sendermail" readonly class="form-control" value="<?php echo $sendermail; ?>">
             <span class="help-block"><?php echo $sendermail_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($subject_err)) ? 'has-error' : ''; ?>">
-            <label for="subject">Tárgy</label>
+            <label for="subject">Subject</label>
             <input id="subject" type="text" name="subject" readonly class="form-control" value="<?php echo $subject; ?>">
             <span class="help-block"><?php echo $subject_err; ?></span>
         </div>
         <div class="form-group <?php echo (!empty($message_err)) ? 'has-error' : ''; ?>">
-            <label for="message">Üzenet</label>
+            <label for="message">Message</label>
             <textarea id="message" name="message" readonly class="form-control"><?php echo $message; ?></textarea>
             <span class="help-block"><?php echo $message_err; ?></span>
         </div>

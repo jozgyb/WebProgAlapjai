@@ -10,14 +10,14 @@ $queryResult = $mysqli->query($requestMessagesByChronologicalOrder);
 <div class="col-12">
     <div class="table-responsive-md">
         <table class="table table-hover">
-        <caption>Összes üzenet az adatbázisban időszerint csökkenő sorrendben.</caption>
+        <caption>All messages from the database, descending order.</caption>
             <thead>
                 <tr>
-                    <th scope="col">Feladó</th>
-                    <th scope="col">E-mail címe</th>
-                    <th scope="col">Tárgy</th>
-                    <th scope="col">Üzenet</th>
-                    <th scope="col">Időbélyeg</th>
+                    <th scope="col">From</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Timestamp</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@ $queryResult = $mysqli->query($requestMessagesByChronologicalOrder);
                         echo "</tr>";
                     }
                 } else {
-                    echo "Jelenleg egy üzenet sem található az adatbázisban.";
+                    echo "No messages can be found in the database.";
                 }
 
                 ?>

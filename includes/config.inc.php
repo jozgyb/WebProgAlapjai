@@ -3,32 +3,32 @@
 session_start();
 
 $pageTitle = array(
-    'title' => 'CsodaCsoport Alapítvány'
+    'title' => 'CsodaCsoport Foundation'
 );
 
 $header = array(
     'imgsrc' => 'img/logo.png',
     'imgalt' => 'logo',
-    'title' => 'CsodaCsoport Alapítvány'
+    'title' => 'CsodaCsoport Foundation'
 );
 
 $footer = array(
     'copyright' => 'Copyright ' . date("Y") . '.',
-    'company' => 'CsodaCsoport Alapítvány'
+    'company' => 'CsodaCsoport Foundation'
 );
 
 $defaultPages = array(
-    '/' => array('file' => 'main', 'text' => 'Főoldal'),
-    'rolunk' => array('file' => 'aboutus', 'text' => 'Rólunk'),
-    'kepgaleria' => array('file' => 'gallery', 'text' => 'Képgaléria'),
-    'kapcsolat' => array('file' => 'contact', 'text' => 'Kapcsolat'),
-    'uzenetek' => array('file' => 'messages', 'text' => 'Üzenetek'),
-    'belepes' => array('file' => 'login', 'text' => 'Belépés'),
-    'regisztracio' => array('file' => 'signup', 'text' => 'Regisztráció'),
-    'kilepes' => array('file' => 'logout', 'text' => 'Kilépés')
+    '/' => array('file' => 'main', 'text' => 'Main'),
+    'aboutus' => array('file' => 'aboutus', 'text' => 'About'),
+    'gallery' => array('file' => 'gallery', 'text' => 'Gallery'),
+    'contact' => array('file' => 'contact', 'text' => 'Contact'),
+    'messages' => array('file' => 'messages', 'text' => 'Messages'),
+    'login' => array('file' => 'login', 'text' => 'Login'),
+    'signup' => array('file' => 'signup', 'text' => 'Sign Up'),
+    'logout' => array('file' => 'logout', 'text' => 'Logout')
 );
 
-$hiba_page = array('file' => '404', 'text' => 'A keresett oldal nem található!');
+$err_page = array('file' => '404', 'text' => 'The requested page cannot be found!');
 
 $debug = true;
 
@@ -38,10 +38,10 @@ function adjustMenuOnLogin($currentPages)
     $result = $result->getArrayCopy();
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
     {
-        unset($result['belepes']);
-        unset($result['regisztracio']);
+        unset($result['login']);
+        unset($result['signup']);
     } else {
-        unset($result['kilepes']);
+        unset($result['logout']);
     }
 
    return $result;
